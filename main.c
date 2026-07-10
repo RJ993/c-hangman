@@ -33,6 +33,7 @@ int generateWord(char *word){
             readLine = (rand() % (theEnd - theBeginning + 1)) + theBeginning;
             do{
                 fgets(buffer, MAX_LINE, pDictionary);
+                buffer[strlen(buffer) - 1] = '\0';
 
                 if (feof(pDictionary)){
                     rewind(pDictionary);
@@ -45,7 +46,6 @@ int generateWord(char *word){
                 currentLine++;
             }while(keepReading);
         }while(strlen(buffer) < 5 || strlen(buffer) > 12);
-        buffer[strlen(buffer) - 1] = '\0';
         
     fclose(pDictionary);
     strcpy(word, buffer);
