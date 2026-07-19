@@ -4,14 +4,20 @@
 #include <stdbool.h>
 #include <time.h>
 #include "lib/gen_word.c"
-
-void blanksGen(char *word, char *interface);
-void interfacePrinter(char *interface);
+#include "lib/hangman_image.c"
+#include "lib/hangman_blanks.c"
 
 int main(void){
     srand(time(NULL));
 
     bool gameRunning = false;
+    char hangmanImage[5][10] = {{"|-----|\n"}, 
+                                {"|     |\n"}, 
+                                {"|      \n"}, 
+                                {"|       \n"}, 
+                                {"|       \n"}};
+    int prevWrongValue = 0;
+    int wrongGuesses = 0;
     char word[13] = {0};
     int generationReturn = generateWord(word);
     if (generationReturn != 0) return 1;
@@ -20,19 +26,10 @@ int main(void){
 
     printf("%s\n", word);
     do {
+        modifyImage(hangmanImage, prevWrongValue, wrongGuesses);
+        prevWrongValue = wrongGuesses;
+        displayImage(hangmanImage);
         interfacePrinter(blanksInterface);
     }while(gameRunning);
     return 0;
-}
-
-void blanksGen(char *word, char *interface){
-    for (int i = 0; i < strlen(word); i++){
-        interface[i] = '_';
-    }
-}
-void interfacePrinter(char *interface){
-    for (int i = 0; i < strlen(interface); i++){
-        printf("%c ", interface[i]);
-    }
-    printf("\n");
 }
