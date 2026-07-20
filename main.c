@@ -10,6 +10,7 @@
 
 void guessCorrectnessCheck(char guess, char* word, char *blanks, int *pWrongGuesses);
 char getGuess(void);
+bool endConditions(char *word, char *blanks, int wrongGuesses);
 
 int main(void){
     srand(time(NULL));
@@ -20,7 +21,7 @@ int main(void){
                                 {"|       \n"}, 
                                 {"|       \n"}};
 
-    bool gameRunning = false;
+    bool gameRunning = true;
     char guess = '\0';
     int prevWrongValue = 0;
     int wrongGuesses = 0;
@@ -32,14 +33,16 @@ int main(void){
     char blanksInterface[13] = {0};
     blanksGen(word, blanksInterface);
 
-    printf("%s\n", word);
+    displayImage(hangmanImage);
+    interfacePrinter(blanksInterface);
     do{
         prevWrongValue = wrongGuesses;
-        displayImage(hangmanImage);
-        interfacePrinter(blanksInterface);
         guess = getGuess();
         guessCorrectnessCheck(guess, word, blanksInterface, &wrongGuesses);
         modifyImage(hangmanImage, prevWrongValue, wrongGuesses);
+        gameRunning = endConditions(word, blanksInterface, wrongGuesses);
+        displayImage(hangmanImage);
+        interfacePrinter(blanksInterface);
     }while(gameRunning);
     return 0;
 }
@@ -65,4 +68,15 @@ char getGuess(void){
         guess = tolower(guess);
     }while(guess < 'a' || guess > 'z');
     return guess;
+}
+
+bool endConditions(char *word, char *blanks, int wrongGuesses){
+    if(strcmp(word, blanks) == 0){
+        printf("You have won!\n");
+        return false;
+    }else if (wrongGuesses > 5) {
+        printf("You have lost! The word is %s.\n", word);
+        return false;
+    }
+    return true;
 }
