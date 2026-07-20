@@ -8,6 +8,8 @@
 #include "lib/hangman_image.c"
 #include "lib/hangman_blanks.c"
 
+void guessCorrectnessCheck(char guess, char* word, char *blanks, int *pWrongGuesses);
+
 int main(void){
     srand(time(NULL));
 
@@ -41,9 +43,19 @@ int main(void){
             while ((charBuffer = getchar()) != '\n' && charBuffer != EOF);
             guess = tolower(guess);
         }while(guess < 'a' || guess > 'z');
-        // Insert correct check logic here.
+        guessCorrectnessCheck(guess, word, blanksInterface, &wrongGuesses);
         modifyImage(hangmanImage, prevWrongValue, wrongGuesses);
-        printf("%c\n", guess);
     }while(gameRunning);
     return 0;
+}
+
+void guessCorrectnessCheck(char guess, char* word, char *blanks, int *pWrongGuesses){
+    bool correct = false;
+    for (int i = 0; i < strlen(word); i++){
+        if (guess == word[i]){
+            correct = true;
+            blanks[i] = word[i];
+        }
+    }
+    if (correct == false) (*pWrongGuesses) += 1;
 }
