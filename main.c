@@ -9,6 +9,7 @@
 #include "lib/hangman_blanks.c"
 
 void guessCorrectnessCheck(char guess, char* word, char *blanks, int *pWrongGuesses);
+char getGuess(void);
 
 int main(void){
     srand(time(NULL));
@@ -24,7 +25,6 @@ int main(void){
     int prevWrongValue = 0;
     int wrongGuesses = 0;
     char word[13] = {0};
-    int charBuffer = '\0';
 
     int generationReturn = generateWord(word);
     if (generationReturn != 0) return 1;
@@ -37,12 +37,7 @@ int main(void){
         prevWrongValue = wrongGuesses;
         displayImage(hangmanImage);
         interfacePrinter(blanksInterface);
-        do{
-            printf("What letter do you think is in the word?: ");
-            guess = getchar();
-            while ((charBuffer = getchar()) != '\n' && charBuffer != EOF);
-            guess = tolower(guess);
-        }while(guess < 'a' || guess > 'z');
+        guess = getGuess();
         guessCorrectnessCheck(guess, word, blanksInterface, &wrongGuesses);
         modifyImage(hangmanImage, prevWrongValue, wrongGuesses);
     }while(gameRunning);
@@ -58,4 +53,16 @@ void guessCorrectnessCheck(char guess, char* word, char *blanks, int *pWrongGues
         }
     }
     if (correct == false) (*pWrongGuesses) += 1;
+}
+
+char getGuess(void){
+    char guess = '\0';
+    int charBuffer = '\0';
+    do{
+        printf("What letter do you think is in the word?: ");
+        guess = getchar();
+        while ((charBuffer = getchar()) != '\n' && charBuffer != EOF);
+        guess = tolower(guess);
+    }while(guess < 'a' || guess > 'z');
+    return guess;
 }
