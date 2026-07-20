@@ -64,7 +64,9 @@ char getGuess(void){
     do{
         printf("What letter do you think is in the word?: ");
         guess = getchar();
-        while ((charBuffer = getchar()) != '\n' && charBuffer != EOF);
+        if (guess != '\n') {
+            while ((charBuffer = getchar()) != '\n' && charBuffer != EOF);
+        }
         guess = tolower(guess);
     }while(guess < 'a' || guess > 'z');
     return guess;
