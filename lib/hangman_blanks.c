@@ -3,7 +3,7 @@
 
 void blanksGen(char *word, char *interface){
     for (int i = 0; i < strlen(word); i++){
-        interface[i] = '_';
+        if (word[i] >= 'a' && word[i] <= 'z') interface[i] = '_';
     }
 }
 void interfacePrinter(char *interface){

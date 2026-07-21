@@ -8,11 +8,12 @@
 #include "lib/hangman_image.c"
 #include "lib/hangman_blanks.c"
 
+
 void guessCorrectnessCheck(char guess, char* word, char *blanks, int *pWrongGuesses);
 char getGuess(void);
 bool endConditions(char *word, char *blanks, int wrongGuesses);
 
-int main(void){
+int main(int argc, char *argv[]){
     srand(time(NULL));
 
     char hangmanImage[5][10] = {{"|-----|\n"}, 
@@ -27,7 +28,8 @@ int main(void){
     int wrongGuesses = 0;
     char word[13] = {0};
 
-    int generationReturn = generateWord(word);
+    int generationReturn = 1;
+    generationReturn = argc == 1 ? generateWordDefault(word) : generateWord(word, argv[1]);
     if (generationReturn != 0) return 1;
 
     char blanksInterface[13] = {0};
