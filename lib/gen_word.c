@@ -47,6 +47,7 @@ int countLines(char *buffer, FILE *pDictionary){
             currentLine++;
         }
     }while(keepReading);
+    printf("%d\n", currentLine);
     return currentLine - 1;
 }
 
