@@ -1,0 +1,51 @@
+cheetah
+sand cat
+bobcat
+grizzly bear
+panther
+jaguar
+leopard
+gecko
+chameleon
+bullfrog
+bloodhound
+axolotl
+grey wolf
+white fox
+snake
+boa constrictor
+python
+anaconda
+komodo dragon
+anteater
+mantis
+shrimp
+spider
+spider crab
+hornet
+paper wasp
+yellowjacket
+polar bear
+salamander
+ocelot
+vampire bat
+penguin
+leopard seal
+sealion
+horse
+barn owl
+chicken
+panda
+raccoon
+wild boar
+monkey
+gorilla
+human
+turtle
+red panda
+squirrel
+blue jay
+red cardinal
+oriole
+squid
+octopus

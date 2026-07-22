@@ -1,0 +1,44 @@
+fortran
+algol
+lisp
+cobol
+assembly
+basic
+pascal
+c language
+scheme
+altair basic
+visual basic
+holy c
+c++ language
+c# language
+rust
+haskell
+ocaml
+perl
+windows powershell
+bash
+golang
+objective-c
+ruby
+python
+swift
+php
+elixir
+erlang
+dart
+java
+clojure
+kotlin
+typescript
+javascript
+scala
+groovy
+web assembly
+coffeescript
+emcascript
+lua
+matlab
+lolcode
+intercal
+whitespace

@@ -12,4 +12,12 @@
     GCC on Linux. It is a jumbo build, so you only need to compile the main file.
 
 # Execution
-    Coming soon!
+    Let's say for demonstration sake that the binary file is called "game".
+
+    You can execute it without arguments.
+        <code>./game</code>
+
+    You can also execute it with arguments. The argument is essentially a text file name.
+    For it to work, the text file name can only have letters, numbers, hyphens and underscores.
+    The default is the "10000" words that Google has assembled into one text file.
+        <code>./game animals</code>
